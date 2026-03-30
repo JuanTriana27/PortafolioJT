@@ -1,0 +1,282 @@
+/* Home.module.css
+   El hero ocupa la pantalla completa menos el navbar.
+   Todo el movimiento visual es CSS puro salvo el canvas (JS obligatorio).  */
+
+/* ── Hero container ─────────────────────────────────────────────────────────── */
+.hero {
+    position: relative;
+    width: 100%;
+    /* Ocupa el viewport completo descontando el navbar fijo */
+    height: calc(100vh - var(--navbar-height));
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--color-bg);
+}
+
+/* ── Canvas de puntos ───────────────────────────────────────────────────────── */
+.canvas {
+    position: absolute;
+    inset: 0;
+    opacity: 0.75;
+    /* El canvas no debe capturar eventos — los pasa al padre para el mousemove */
+    pointer-events: none;
+}
+
+/* ── Contenido central ──────────────────────────────────────────────────────── */
+.content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem var(--space-xl);
+    max-width: 760px;
+    width: 100%;
+}
+
+/* ── Eyebrow ────────────────────────────────────────────────────────────────── */
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 1.5rem;
+
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.1s forwards;
+}
+
+.eyebrowDot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    flex-shrink: 0;
+}
+
+/* ── Nombre con reveal por palabra ─────────────────────────────────────────── */
+.name {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    color: var(--color-text-primary);
+    margin-bottom: 1.25rem;
+}
+
+/* Cada .word arranca invisible y cae desde arriba */
+.word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: wordReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Delays escalonados — los índices los manejamos con nth-child
+   porque son siempre exactamente 3 palabras */
+.word:nth-child(1) {
+    animation-delay: 0.3s;
+}
+
+.word:nth-child(2) {
+    animation-delay: 0.45s;
+}
+
+.word:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+/* La palabra del apellido en acento */
+.wordAccent {
+    color: var(--color-accent);
+}
+
+/* ── Rol con typewriter ─────────────────────────────────────────────────────── */
+.role {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+    min-height: 1.5rem;
+    /* evita layout shift mientras no hay texto */
+
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.9s forwards;
+}
+
+/* Cursor parpadeante — puramente CSS, sin JS */
+.cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--color-accent);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+}
+
+/* ── Botones CTA ────────────────────────────────────────────────────────────── */
+.ctas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    opacity: 0;
+    animation: fadeUp 0.5s ease 1.1s forwards;
+}
+
+.btnPrimary {
+    padding: 0.65rem 1.5rem;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border: none;
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity var(--transition-fast);
+}
+
+.btnPrimary:hover {
+    opacity: 0.85;
+}
+
+.btnPrimary:active {
+    transform: scale(0.98);
+}
+
+.btnSecondary {
+    padding: 0.65rem 1.5rem;
+    background: transparent;
+    color: var(--color-text-primary);
+    border: 1.5px solid var(--color-border);
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+        border-color var(--transition-fast),
+        color var(--transition-fast);
+}
+
+.btnSecondary:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.btnSecondary:active {
+    transform: scale(0.98);
+}
+
+/* ── Stats row ──────────────────────────────────────────────────────────────── */
+.stats {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0;
+    /* los gaps los maneja .statGroup con el separador */
+
+    opacity: 0;
+    animation: fadeUp 0.5s ease 1.3s forwards;
+}
+
+.statGroup {
+    display: flex;
+    align-items: center;
+}
+
+.statSep {
+    width: 1px;
+    height: 32px;
+    background: var(--color-border);
+    margin: 0 2rem;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+.statValue {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+.statLabel {
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* ── Keyframes ──────────────────────────────────────────────────────────────── */
+@keyframes wordReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+    .hero {
+        height: calc(100svh - var(--navbar-height));
+    }
+
+    .content {
+        padding: 1.5rem var(--space-lg);
+    }
+
+    .stats {
+        bottom: 1.25rem;
+        gap: 0;
+    }
+
+    .statSep {
+        margin: 0 1.25rem;
+    }
+}

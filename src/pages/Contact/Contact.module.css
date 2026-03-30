@@ -1,0 +1,279 @@
+/* Contact.module.css
+   Consistente con el sistema de variables de globals.css.
+   Layout de dos columnas: info lateral + formulario.            */
+
+/* ── Página ─────────────────────────────────────────────────────────────────── */
+.page {
+    min-height: 100vh;
+    padding: var(--space-2xl) 0;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 var(--space-xl);
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────────── */
+.header {
+    margin-bottom: var(--space-2xl);
+}
+
+.eyebrow {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: var(--space-md);
+}
+
+.title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-md);
+}
+
+.subtitle {
+    font-size: 0.975rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+/* ── Layout dos columnas ────────────────────────────────────────────────────── */
+.layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: var(--space-2xl);
+    align-items: flex-start;
+}
+
+/* ── Info lateral ───────────────────────────────────────────────────────────── */
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    /* Se queda pegada al top cuando el formulario es más alto */
+    position: sticky;
+    top: calc(var(--navbar-height) + var(--space-xl));
+}
+
+.infoItem {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.infoLabel {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    opacity: 0.6;
+}
+
+.infoValue {
+    font-size: 0.875rem;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a.infoValue:hover {
+    color: var(--color-accent);
+}
+
+.infoBadge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    background: var(--color-accent-dim);
+    border: 1px solid rgba(110, 231, 183, 0.2);
+    border-radius: 4px;
+    padding: 3px 10px;
+    width: fit-content;
+}
+
+/* ── Formulario ─────────────────────────────────────────────────────────────── */
+.formWrap {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+/* Fila de dos campos lado a lado */
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+}
+
+.input {
+    width: 100%;
+    padding: 0.65rem 0.875rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    outline: none;
+    transition:
+        border-color var(--transition-fast),
+        background var(--transition-fast);
+}
+
+.input::placeholder {
+    color: var(--color-text-secondary);
+    opacity: 0.4;
+}
+
+.input:focus {
+    border-color: var(--color-accent);
+    background: rgba(110, 231, 183, 0.03);
+}
+
+.input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+/* ── Botón de envío ─────────────────────────────────────────────────────────── */
+.submitBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border: none;
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.submitBtn:hover:not(:disabled) {
+    opacity: 0.88;
+}
+
+.submitBtn:active:not(:disabled) {
+    transform: scale(0.99);
+}
+
+.submitBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Spinner de carga — puramente CSS */
+.spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(10, 10, 15, 0.3);
+    border-top-color: var(--color-bg);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ── Alerts ─────────────────────────────────────────────────────────────────── */
+.alert {
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    border: 1px solid;
+    animation: fadeUp 0.3s ease;
+}
+
+.alertSuccess {
+    color: var(--color-accent);
+    background: var(--color-accent-dim);
+    border-color: rgba(110, 231, 183, 0.25);
+}
+
+.alertError {
+    color: #f87171;
+    background: rgba(248, 113, 113, 0.08);
+    border-color: rgba(248, 113, 113, 0.2);
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+
+    .info {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--space-lg);
+        padding-bottom: var(--space-lg);
+        border-bottom: 1px solid var(--color-border);
+    }
+}
+
+@media (max-width: 500px) {
+    .row {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 0 var(--space-lg);
+    }
+}

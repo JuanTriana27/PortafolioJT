@@ -1,0 +1,295 @@
+/* ─── Layout de sección ───────────────────────────────────────────── */
+.section {
+    padding: var(--space-2xl) 0;
+    min-height: 80vh;
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-xl);
+}
+
+/* ─── Header ──────────────────────────────────────────────────────── */
+.sectionHeader {
+    margin-bottom: var(--space-2xl);
+}
+
+.sectionLabel {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: var(--space-sm);
+}
+
+.sectionTitle {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--color-text-primary);
+    line-height: 1.1;
+    margin-bottom: var(--space-md);
+}
+
+.sectionSubtitle {
+    font-size: 1.05rem;
+    color: var(--color-text-secondary);
+    max-width: 520px;
+    line-height: 1.65;
+}
+
+/* ─── Filtros ─────────────────────────────────────────────────────── */
+.filterBar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xl);
+}
+
+.filterBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.45rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+        background var(--transition-fast),
+        color var(--transition-fast),
+        border-color var(--transition-fast);
+}
+
+.filterBtn:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--color-text-primary);
+}
+
+.filterActive {
+    background: var(--color-accent-dim);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.filterCount {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.07);
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.filterActive .filterCount {
+    background: var(--color-accent-dim);
+}
+
+/* ─── Grid de proyectos ───────────────────────────────────────────── */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-lg);
+}
+
+/* ─── Card ────────────────────────────────────────────────────────── */
+.card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: var(--space-lg);
+    gap: var(--space-md);
+    position: relative;
+    overflow: hidden;
+
+    /* Animación de entrada escalonada por índice */
+    opacity: 0;
+    transform: translateY(16px);
+    animation: cardIn 0.4s ease forwards;
+    animation-delay: calc(var(--card-index, 0) * 60ms);
+
+    transition: border-color var(--transition-fast), transform var(--transition-normal);
+}
+
+.card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-3px);
+}
+
+@keyframes cardIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Acento superior para cards destacadas */
+.cardFeatured::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--color-accent);
+}
+
+.featuredBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+    background: var(--color-accent-dim);
+    border: 1px solid rgba(110, 231, 183, 0.2);
+    padding: 3px 10px;
+    border-radius: 999px;
+    width: fit-content;
+}
+
+/* ─── Contenido de la card ────────────────────────────────────────── */
+.cardBody {
+    flex: 1;
+    /* Empuja los tags y acciones al fondo */
+}
+
+.cardTitle {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-sm);
+}
+
+.cardDescription {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    white-space: pre-line;
+}
+
+/* ─── Tags de tecnología ──────────────────────────────────────────── */
+.tagList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+}
+
+/* Cada color de tag tiene fondo tenue + texto más saturado */
+.tagBlue {
+    background: rgba(55, 138, 221, 0.12);
+    color: #7ab8ef;
+}
+
+.tagGreen {
+    background: rgba(99, 153, 34, 0.12);
+    color: #8fbb55;
+}
+
+.tagAmber {
+    background: rgba(239, 159, 39, 0.12);
+    color: #f0b155;
+}
+
+.tagCoral {
+    background: rgba(216, 90, 48, 0.12);
+    color: #e88060;
+}
+
+.tagTeal {
+    background: rgba(29, 158, 117, 0.12);
+    color: #4ecba0;
+}
+
+.tagPurple {
+    background: rgba(127, 119, 221, 0.12);
+    color: #a9a4e8;
+}
+
+/* ─── Acciones de la card ─────────────────────────────────────────── */
+.cardActions {
+    display: flex;
+    gap: var(--space-sm);
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--color-border);
+}
+
+/* Estilos base compartidos para ambos botones */
+.btnGithub,
+.btnDemo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    font-family: var(--font-body);
+    transition: background var(--transition-fast), color var(--transition-fast);
+    text-decoration: none;
+}
+
+.btnGithub {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
+}
+
+.btnGithub:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-primary);
+}
+
+.btnDemo {
+    background: var(--color-accent-dim);
+    color: var(--color-accent);
+    border: 1px solid rgba(110, 231, 183, 0.2);
+}
+
+.btnDemo:hover {
+    background: rgba(110, 231, 183, 0.2);
+}
+
+/* ─── Estado vacío ────────────────────────────────────────────────── */
+.empty {
+    text-align: center;
+    padding: var(--space-2xl);
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 var(--space-lg);
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}

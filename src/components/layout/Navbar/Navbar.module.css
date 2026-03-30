@@ -1,0 +1,286 @@
+/* ─── Navbar base ─────────────────────────────────────────────────── */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: var(--navbar-height);
+
+    /* Sin fondo al inicio — se revela con scroll (ver .scrolled) */
+    background: transparent;
+    border-bottom: 1px solid transparent;
+
+    transition:
+        background var(--transition-slow),
+        border-color var(--transition-slow),
+        backdrop-filter var(--transition-slow);
+}
+
+/* Cuando el usuario scrollea, añadimos fondo con blur */
+.scrolled {
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom-color: var(--color-border);
+}
+
+.inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-xl);
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+}
+
+/* ─── Logo ────────────────────────────────────────────────────────── */
+.logo {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+
+    transition: opacity var(--transition-fast);
+}
+
+.logo:hover {
+    opacity: 0.8;
+}
+
+.logoAccent {
+    color: var(--color-accent);
+    font-weight: 800;
+}
+
+/* ─── Links de escritorio ─────────────────────────────────────────── */
+.navLinks {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+
+    /* Lo centramos entre logo y CTA */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navLink {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: var(--space-sm) var(--space-md);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.01em;
+
+    transition: color var(--transition-fast);
+}
+
+.navLink:hover,
+.navLink.active {
+    color: var(--color-text-primary);
+}
+
+/* Línea de subrayado animada */
+.linkUnderline {
+    position: absolute;
+    bottom: 2px;
+    left: var(--space-md);
+    right: var(--space-md);
+    height: 1.5px;
+    background: var(--color-accent);
+    border-radius: 999px;
+
+    /* Escondida por defecto, se revela con transform */
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-normal);
+}
+
+.navLink:hover .linkUnderline,
+.navLink.active .linkUnderline {
+    transform: scaleX(1);
+}
+
+/* ─── Botón CTA (Descargar CV) ────────────────────────────────────── */
+.ctaButton {
+    padding: 0.5rem 1.25rem;
+    border: 1.5px solid var(--color-accent);
+    border-radius: 6px;
+    color: var(--color-accent);
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+
+    transition:
+        background var(--transition-fast),
+        color var(--transition-fast);
+}
+
+.ctaButton:hover {
+    background: var(--color-accent);
+    color: var(--color-bg);
+}
+
+/* ─── Menú hamburguesa (solo móvil) ──────────────────────────────── */
+.menuToggle {
+    display: none;
+    /* Oculto en desktop */
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.bar {
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background: var(--color-text-primary);
+    border-radius: 999px;
+    transform-origin: center;
+    transition:
+        transform var(--transition-normal),
+        opacity var(--transition-normal);
+}
+
+/* Animación hamburguesa → X */
+.menuOpen .bar:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+}
+
+.menuOpen .bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.menuOpen .bar:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ─── Overlay oscuro detrás del menú móvil ───────────────────────── */
+.mobileOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+    z-index: 98;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-normal);
+}
+
+.overlayVisible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ─── Panel de menú móvil ─────────────────────────────────────────── */
+.mobileMenu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(320px, 85vw);
+    z-index: 99;
+
+    background: var(--color-surface);
+    border-left: 1px solid var(--color-border);
+    padding: calc(var(--navbar-height) + var(--space-xl)) var(--space-xl) var(--space-xl);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+
+    /* Empieza fuera de pantalla, se desliza al abrir */
+    transform: translateX(100%);
+    transition: transform var(--transition-slow) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobileMenuOpen {
+    transform: translateX(0);
+}
+
+/* ─── Items del menú móvil con animación escalonada ──────────────── */
+.mobileNavItem {
+    opacity: 0;
+    transform: translateX(24px);
+    transition:
+        opacity var(--transition-normal),
+        transform var(--transition-normal);
+
+    /* El delay usa la custom property inyectada desde el JSX */
+    transition-delay: calc(var(--item-index, 0) * 60ms + 100ms);
+}
+
+.mobileMenuOpen .mobileNavItem {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.mobileNavLink {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    line-height: 1;
+    padding: var(--space-sm) 0;
+
+    transition: color var(--transition-fast);
+}
+
+.mobileNavLink:hover,
+.mobileNavLink.active {
+    color: var(--color-accent);
+}
+
+.mobileCta {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: 1.5px solid var(--color-accent);
+    border-radius: 6px;
+    color: var(--color-accent);
+    font-weight: 500;
+    text-align: center;
+    align-self: flex-start;
+
+    transition:
+        background var(--transition-fast),
+        color var(--transition-fast);
+}
+
+.mobileCta:hover {
+    background: var(--color-accent);
+    color: var(--color-bg);
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+    .navLinks,
+    .ctaButton {
+        display: none;
+    }
+
+    .menuToggle {
+        display: flex;
+    }
+
+    .inner {
+        padding: 0 var(--space-lg);
+    }
+}
