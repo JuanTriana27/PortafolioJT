@@ -130,7 +130,7 @@ export const PROJECTS: Project[] = [
         id: 'blog-noticias-php',
         title: 'Blog de Noticias',
         description:
-            'CMS de noticias con panel administrativo, comentarios y gestión de usuarios.\n\nAdmin: http://blog-curso.rf.gd/login.php (usuario: admin, contraseña: admin)',
+            'CMS de noticias con panel administrativo, comentarios y gestión de usuarios.\n\nAdmin: http://blognoticreo.liveblog365.com/login.php (usuario: admin, contraseña: admin)',
         category: 'fullstack',
         featured: false,
         tags: [
@@ -139,7 +139,7 @@ export const PROJECTS: Project[] = [
             { label: 'CSS', color: 'blue' },
         ],
         githubUrl: 'https://github.com/JuanTriana27/Blog_Noticias',
-        demoUrl: 'http://blog-curso.rf.gd/login.php',
+        demoUrl: 'http://blognoticreo.liveblog365.com/',
     },
 
     {
