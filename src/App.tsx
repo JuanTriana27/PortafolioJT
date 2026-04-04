@@ -4,12 +4,14 @@ import Home from './pages/Home/Home'
 import About from './pages/About/About'
 import Projects from './pages/Projects/Projects'
 import Contact from './pages/Contact/Contact'
+import { GoogleAnalytics } from './components/Analytics'
 
 export default function App() {
   return (
     <BrowserRouter>
+      <GoogleAnalytics />
+
       <Routes>
-        {/* Layout envuelve todas las rutas — el Navbar aparece siempre */}
         <Route element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
@@ -17,6 +19,7 @@ export default function App() {
           <Route path="contact" element={<Contact />} />
         </Route>
       </Routes>
+
     </BrowserRouter>
   )
 }

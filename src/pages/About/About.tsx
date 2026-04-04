@@ -5,6 +5,7 @@
 import { useEffect, useRef } from 'react'
 import { ABOUT_CONTENT } from './about.data'
 import styles from './About.module.css'
+import { SOCIAL_LINKS } from './about.data'
 
 // ─── Datos que no están en about.data.ts ─────────────────────────────────────
 // Experiencia, educación y cursos son más estáticos y específicos del CV;
@@ -132,7 +133,7 @@ export default function About() {
                         <span className={styles.accent}>
                             {ABOUT_CONTENT.name.split(' ').slice(2).join(' ')}
                         </span>
-                        
+
                     </h1>
 
                     <p className={styles.heroRole}>{ABOUT_CONTENT.role}</p>
@@ -142,7 +143,7 @@ export default function About() {
                             <p key={i}>{paragraph}</p>
                         ))}
                     </div>
-                    
+
 
                     <div className={styles.heroMeta}>
                         {locationDetail && (
@@ -170,7 +171,7 @@ export default function About() {
                         )}
                     </div>
 
-                    
+
                 </div>
             </section>
 
@@ -264,6 +265,28 @@ export default function About() {
                     </div>
                 </section>
 
+                {/* ── Redes Sociales ────────────────────────────────────────── */}
+                <section>
+
+                    <h2 className={styles.sectionTitle}>Conecta conmigo</h2>
+
+                    <div className={styles.socialLinks}>
+
+                        {SOCIAL_LINKS.map((social) => (
+                            <a
+                                key={social.platform}
+                                href={social.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title={social.platform}
+                                className={styles.socialLink}
+                                aria-label={`Visita mi ${social.platform}`}
+                            >
+                                <i className={social.icon} aria-hidden="true" />
+                            </a>
+                        ))}
+                    </div>
+                </section>
             </div>
         </div>
     )

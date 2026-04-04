@@ -24,6 +24,30 @@ export interface SkillGroup {
     items: string[]
 }
 
+export interface SocialLink {
+    platform: string
+    url: string
+    icon: string
+}
+
+export const SOCIAL_LINKS: SocialLink[] = [
+    {
+        platform: 'GitHub',
+        url: 'https://github.com/JuanTriana27',
+        icon: 'fab fa-github',
+    },
+    {
+        platform: 'LinkedIn',
+        url: 'https://www.linkedin.com/in/juan-triana27/',
+        icon: 'fab fa-linkedin',
+    },
+    {
+        platform: 'Instagram',
+        url: 'https://www.instagram.com/juan_triiana/',
+        icon: 'fab fa-instagram',
+    },
+]
+
 // La imagen se importa aquí y no en el componente — si cambia el archivo,
 // solo se toca este import y el resto del código no sabe nada de rutas.
 import fotoJuan from './../../assets/img/Foto_Juan_Triana.png'
