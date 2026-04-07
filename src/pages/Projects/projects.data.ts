@@ -26,6 +26,22 @@ export const PROJECTS: Project[] = [
 
     // Full Stack
     {
+        id: 'jtmail-react-spring',
+        title: 'JTmail - Aplicación de Correos Electrónicos',
+        description:
+            'Plataforma de gestión de correos electrónicos con funcionalidades completas de envío, recepción y organización.',
+        category: 'fullstack',
+        featured: true,
+        tags: [
+            { label: 'Spring Boot', color: 'green' },
+            { label: 'React', color: 'blue' },
+            { label: 'PostgreSQL', color: 'blue' },
+            { label: 'Docker', color: 'blue' },
+        ],
+        githubUrl: 'https://github.com/JuanTriana27/JTmail',
+        demoUrl: 'https://j-tmail-frontend.vercel.app/',
+    },
+    {
         id: 'inmobiliaria-react-spring',
         title: 'Sistema Inmobiliario',
         description:
@@ -159,6 +175,22 @@ export const PROJECTS: Project[] = [
 
     // Backend
     {
+        id: 'Jtmail-API',
+        title: 'JTmail API',
+        description: 'API RESTful para gestión de correos electrónicos. Implementa autenticación JWT y está desplegada en Render.',
+        category: 'backend',
+        tags: [
+            { label: 'Spring Boot', color: 'green' },
+            { label: 'JWT', color: 'amber' },
+            { label: 'PostgreSQL', color: 'blue' },
+            { label: 'Render', color: 'purple' },
+            { label: 'Neon', color: 'teal' },
+            { label: 'Docker', color: 'teal' },
+        ],
+        githubUrl: 'https://github.com/JuanTriana27/JTmail---bakend',
+    },
+
+    {
         id: 'Inmobiliaria-API',
         title: 'Inmobiliaria API',
         description: 'API RESTful para gestión de propiedades, agentes y clientes. Implementa autenticación JWT y está desplegada en Render.',
@@ -192,6 +224,23 @@ export const PROJECTS: Project[] = [
 
     // Frontend
     {
+        id: 'JTmail-Frontend',
+        title: 'JTmail Frontend',
+        description:
+            'Frontend de la aplicación JTmail. Desarrollado con React y TypeScript. Desplegado en Vercel.',
+        category: 'frontend',
+        tags: [
+            { label: 'React', color: 'blue' },
+            { label: 'TypeScript', color: 'blue' },
+            { label: 'CSS Modules', color: 'purple' },
+            { label: 'EmailJS', color: 'teal' },
+            { label: 'Vercel', color: 'teal' },
+
+        ],
+        githubUrl: 'https://github.com/JuanTriana27/JTmail---frontend'
+    },
+
+    {
         id: 'Portafolio-v2',
         title: 'Portafolio v2',
         description:
@@ -205,8 +254,7 @@ export const PROJECTS: Project[] = [
             { label: 'Vercel', color: 'teal' },
 
         ],
-        githubUrl: '',
-        demoUrl: '',
+        githubUrl: 'https://github.com/JuanTriana27/PortafolioJT'
     },
 
     {
