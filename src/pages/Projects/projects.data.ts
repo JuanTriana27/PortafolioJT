@@ -269,5 +269,36 @@ export const PROJECTS: Project[] = [
             { label: 'Vercel', color: 'teal' },
         ],
         githubUrl: 'https://github.com/JuanTriana27/frontend-fitbooker',
+    },
+
+    {
+        id: 'login-js',
+        title: 'Login con Validación',
+        description:
+            'Aplicación de login con validación de email, contraseña y confirmación. Incluye validación de campos, mostrar/ocultar contraseña y almacenamiento en localStorage.',
+        category: 'frontend',
+        tags: [
+            { label: 'HTML', color: 'amber' },
+            { label: 'CSS', color: 'blue' },
+            { label: 'JavaScript', color: 'amber' },
+        ],
+        githubUrl: 'https://github.com/JuanTriana27/LoginJS',
+        demoUrl: 'https://login-js-tan.vercel.app/',
+    },
+
+    {
+        id: 'formulario-js',
+        title: 'Formulario de Registro',
+        description:
+            'Formulario interactivo con validación completa de campos de texto, email, edad, select y checkboxes. Incluye manejo de errores dinámicos y estilos tipo Apple.',
+        category: 'frontend',
+
+        tags: [
+            { label: 'HTML', color: 'amber' },
+            { label: 'CSS', color: 'blue' },
+            { label: 'JavaScript', color: 'amber' },
+        ],
+        githubUrl: 'https://github.com/JuanTriana27/FormularioJS',
+        demoUrl: 'https://formulario-js-ebon.vercel.app/',
     }
 ]
