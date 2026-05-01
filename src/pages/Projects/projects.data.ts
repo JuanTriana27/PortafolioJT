@@ -300,5 +300,39 @@ export const PROJECTS: Project[] = [
         ],
         githubUrl: 'https://github.com/JuanTriana27/FormularioJS',
         demoUrl: 'https://formulario-js-ebon.vercel.app/',
+    },
+
+    {
+        id: 'weather-app-openmeteo',
+        title: 'Weather App con Autocompletado',
+        description:
+            'Aplicación de clima en tiempo real con autocompletado de ciudades, debounce para optimización de consultas y consumo de APIs de Open-Meteo. Incluye manejo de estados, sugerencias dinámicas y renderizado de condiciones climáticas.',
+        category: 'frontend',
+        featured: false,
+        tags: [
+            { label: 'JavaScript', color: 'amber' },
+            { label: 'HTML', color: 'amber' },
+            { label: 'CSS', color: 'blue' },
+            { label: 'API REST', color: 'green' },
+        ],
+        githubUrl: 'https://github.com/JuanTriana27/AppClimaJS',
+        demoUrl: 'https://app-clima-js-sepia.vercel.app/',
+    },
+
+    {
+        id: 'social-app-js',
+        title: 'Red Social Simple (CRUD Posts)',
+        description:
+            'Aplicación tipo red social con creación, edición y eliminación de posts. Manejo de estado en memoria, renderizado dinámico del DOM y consumo de API REST. Incluye lógica para mostrar últimos posts y UI interactiva con acciones por elemento.',
+        category: 'frontend',
+        featured: false,
+        tags: [
+            { label: 'JavaScript', color: 'amber' },
+            { label: 'HTML', color: 'amber' },
+            { label: 'CSS', color: 'blue' },
+            { label: 'API REST', color: 'green' },
+        ],
+        githubUrl: 'https://github.com/JuanTriana27/AppRedSocialJS',
+        demoUrl: 'https://red-social-js.vercel.app/',
     }
 ]
